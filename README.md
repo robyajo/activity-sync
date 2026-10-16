@@ -1,27 +1,32 @@
-# Paket Sinkron Kegiatan (siap salin ke proyek lain)
+# activity-sync
 
-Paket mandiri agar AI di proyek lain otomatis mengirim kabar ke portfolio.
-Salin **seluruh folder `DOCS/sync/`** atau ambil per berkas sesuai kebutuhan.
+Paket mandiri agar AI di proyek mana pun otomatis mengirim kabar kegiatan ke
+portfolio (`https://ajoroby.is-a.dev`). Salin folder ini ke proyek lain, ikuti
+`AGENTS.md`, selesai.
 
-| Berkas | Untuk | Dipakai di mana |
-|---|---|---|
-| `activity-sync/SKILL.md` | AI proyek lain | salin ke `<proyek>/.agents/skills/activity-sync/SKILL.md` |
-| `activity-sync/backfill.md` | Kirim ulang `releases/*.json` lama (sekali per proyek) | dijalankan sekali saat pasang |
-| `activity-sync/postman-collection.json` | Uji coba manual semua route | import ke Postman, isi variable `projectKey` |
-| `route.md` | Referensi kontrak API (POST/GET/PATCH/DELETE, kode status, batas) | dibaca AI/manusia saat integrasi |
-| `skill-activity-sync.md` | Panduan pemilik portfolio (kunci, registry, alur data) | arsip internal, jangan disebar ke proyek lain |
-| `README.md` (ini) | Peta paket + checklist pasang | dibaca pertama |
+## Isi paket
 
-**Catatan duplikasi**: `SKILL.md` di sini identik dengan
-`.agents/skills/activity-sync/SKILL.md` (yang dipakai AI repo ini).
-Jika salah satu diubah, samakan yang lain — cek cepat: `diff` kedua berkas
-harus kosong.
+| Berkas | Untuk |
+|---|---|
+| `SKILL.md` | Aturan + alur CRUD untuk AI (`<proyek>/.agents/skills/activity-sync/SKILL.md`) |
+| `route.md` | Kontrak API + **kunci `X-project` di baris 2** |
+| `backfill.md` | Kirim ulang `releases/*.json` lama (sekali saja per proyek, OS-agnostik) |
+| `postman-collection.json` | Uji coba manual semua route (import ke Postman, isi variable `projectKey`) |
+| `AGENTS.md` | Blok aturan siap tempel ke `AGENTS.md` proyek lain |
+| `README.md` | Berkas ini |
 
-## Checklist pasang di proyek lain (untuk AI/owner)
+## Cara pakai (ringkas)
 
-1. Salin `activity-sync/` ke `.agents/skills/` proyek tersebut.
-2. Pakai **kunci bersama** yang sudah ada (tidak perlu kunci baru per proyek).
-3. Tempel kunci ke konfigurasi AI proyek itu (jangan commit ke git publik).
-4. Uji sekali: kirim contoh dari `SKILL.md` dengan `project.name` proyek itu, lalu cek `GET /api/activities?limit=3`.
-5. Setelah itu AI wajib mengirim setiap ada perubahan yang dirasakan pengguna,
-   dengan `source` = nama berkas rilis agar revisi menimpa, bukan mendobel.
+1. Salin `SKILL.md` → `.agents/skills/activity-sync/SKILL.md` di proyek tujuan.
+2. Tempel blok dari `AGENTS.md` ke `AGENTS.md` proyek tujuan.
+3. Kunci sudah tertulis di `route.md` baris 2 — AI membacanya dari sana.
+4. Uji: kirim contoh dari `SKILL.md`, verifikasi via `GET /api/activities?limit=3`.
+   Atau import `postman-collection.json` ke Postman untuk klik-klik manual.
+
+## Keamanan kunci
+
+Kunci ini **sengaja publik dalam paket** agar AI bisa bekerja tanpa setup.
+Risikonya terbatas: hanya bisa menitip kabar (dimoderasi admin portfolio).
+Bila disalahgunakan: pemilik mencabut kunci dari registry + redeploy, kiriman
+dengan kunci itu langsung ditolak (`403`). Jangan pernah memakai kunci ini
+untuk hal selain kirim kegiatan.
