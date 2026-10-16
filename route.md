@@ -3,7 +3,7 @@ ACTIVITY_PROJECT_KEYS=pk_80e642a892d964362e180107bc8fb417:Proyek Publik Bersama
 > **Pola kunci app lain**: berkas `.ACTIVITY_PROJECT_KEYS.example` di folder
 > paket adalah contoh format. Di app tujuan, salin jadi `.ACTIVITY_PROJECT_KEYS`
 > lalu isi kunci `X-project` app itu — AI membaca berkas tersebut sebagai
-> sumber kuncinya (OCR tidak — membaca berkas, bukan baris ini yang utama).
+> sumber kuncinya; baris ini hanya contoh kunci bersama.
 
 # Kontrak Route Activity Sync
 
