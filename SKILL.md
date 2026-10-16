@@ -12,7 +12,15 @@ hapus, verifikasi. Bahasa: selalu dwibahasa `id` + `en`.
 Konfigurasi proyek ini (wajib ada sebelum mulai):
 
 - `API = https://ajoroby.is-a.dev/api/activities`
-- `KEY` = kunci `X-project` proyek ini (minta ke pemilik portfolio, jangan commit)
+- `KEY` = kunci `X-project` proyek ini — **baca dari berkas
+  `.ACTIVITY_PROJECT_KEYS`** di folder skill ini (baris
+  `ACTIVITY_PROJECT_KEYS=<kunci>:<nama>`). Jika berkas itu belum ada,
+  salin `.ACTIVITY_PROJECT_KEYS.example` menjadi `.ACTIVITY_PROJECT_KEYS`,
+  lalu minta pemilik mengisi kunci app ini — setelah terisi jangan tanya lagi.
+  Berkas kunci asli tidak boleh di-commit ke git.
+
+Jika folder ini berisi `route.md`, konsultasikan detail batas/parameter di sana;
+folder paket lengkap tersedia di repo `activity-sync`.
 
 ## 1. Cek proyek yang ada (pelajari dulu)
 

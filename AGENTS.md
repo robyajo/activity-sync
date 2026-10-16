@@ -16,9 +16,10 @@ jangan kirim.
    ikuti alur CRUD di sana: cek proyek (`GET /api/projects?key=`), kirim/
    revisi (`POST` dengan `source` = nama berkas rilis), ubah (`PATCH`),
    hapus (`DELETE`), lalu verifikasi (`GET` + cek tidak dobel).
-2. Kunci `X-project` proyek ini: baca dari baris 2 `route.md`
-   (`ACTIVITY_PROJECT_KEYS=<kunci>:<NAMA_PROYEK>`) — JANGAN commit kunci ke git,
-   JANGAN tampilkan ke user kecuali diminta.
+2. Kunci `X-project` proyek ini: baca dari berkas `.ACTIVITY_PROJECT_KEYS`
+   di folder skill ini (contoh format lihat `.ACTIVITY_PROJECT_KEYS.example`;
+   salin jadi `.ACTIVITY_PROJECT_KEYS` lalu isi kunci app ini) — JANGAN commit
+   berkas kunci ke git, JANGAN tampilkan ke user kecuali diminta.
 3. Setiap kiriman wajib dwibahasa (`id` + `en`), maksimal 300 karakter judul /
    2000 karakter isi, bahasa pelayanan publik (dilarang menyebut library,
    framework, database, file kode, atau mekanisme internal).
@@ -29,8 +30,9 @@ jangan kirim.
 
 Aturan tambahan untuk AI (`AGENTS.md` ini):
 
-- Kunci di `route.md` baris 2 adalah sumber kebenaran. Bila respons API `401`
-  (tanpa header) atau `403` (kunci salah), berhenti dan minta kunci baru ke
-  pemilik — jangan menebak.
+- Kunci di `.ACTIVITY_PROJECT_KEYS` adalah sumber kebenaran app ini (contoh
+  format: `.ACTIVITY_PROJECT_KEYS.example`; kunci bersama portfolio ada di
+  baris contoh itu). Bila respons API `401` (tanpa header) atau `403`
+  (kunci salah), berhenti dan minta kunci baru ke pemilik — jangan menebak.
 - `source` HARUS stabil per rilis (nama berkasnya) agar revisi menimpa baris
   yang sama.

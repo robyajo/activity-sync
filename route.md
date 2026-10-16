@@ -1,5 +1,10 @@
 ACTIVITY_PROJECT_KEYS=pk_80e642a892d964362e180107bc8fb417:Proyek Publik Bersama
 
+> **Pola kunci app lain**: berkas `.ACTIVITY_PROJECT_KEYS.example` di folder
+> paket adalah contoh format. Di app tujuan, salin jadi `.ACTIVITY_PROJECT_KEYS`
+> lalu isi kunci `X-project` app itu — AI membaca berkas tersebut sebagai
+> sumber kuncinya (OCR tidak — membaca berkas, bukan baris ini yang utama).
+
 # Kontrak Route Activity Sync
 
 Basis: `https://ajoroby.is-a.dev`. Semua respons JSON. Waktu dalam ISO-8601

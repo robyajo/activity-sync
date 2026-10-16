@@ -9,7 +9,8 @@ portfolio (`https://ajoroby.is-a.dev`). Salin folder ini ke proyek lain, ikuti
 | Berkas | Untuk |
 |---|---|
 | `SKILL.md` | Aturan + alur CRUD untuk AI (`<proyek>/.agents/skills/activity-sync/SKILL.md`) |
-| `route.md` | Kontrak API + **kunci `X-project` di baris 2** |
+| `route.md` | Kontrak API lengkap (POST/GET/PATCH/DELETE, kode status, batas) |
+| `.ACTIVITY_PROJECT_KEYS.example` | Pola berkas kunci `X-project` — salin jadi `.ACTIVITY_PROJECT_KEYS` lalu isi kunci app |
 | `backfill.md` | Kirim ulang `releases/*.json` lama (sekali saja per proyek, OS-agnostik) |
 | `postman-collection.json` | Uji coba manual semua route (import ke Postman, isi variable `projectKey`) |
 | `AGENTS.md` | Blok aturan siap tempel ke `AGENTS.md` proyek lain |
@@ -17,9 +18,10 @@ portfolio (`https://ajoroby.is-a.dev`). Salin folder ini ke proyek lain, ikuti
 
 ## Cara pakai (ringkas)
 
-1. Salin `SKILL.md` → `.agents/skills/activity-sync/SKILL.md` di proyek tujuan.
+1. Salin folder ini → `.agents/skills/activity-sync/` di proyek tujuan.
 2. Tempel blok dari `AGENTS.md` ke `AGENTS.md` proyek tujuan.
-3. Kunci sudah tertulis di `route.md` baris 2 — AI membacanya dari sana.
+3. Siapkan kunci: `cp .ACTIVITY_PROJECT_KEYS.example .ACTIVITY_PROJECT_KEYS`
+   lalu isi kunci `X-project` app tersebut (default contoh = kunci bersama).
 4. Uji: kirim contoh dari `SKILL.md`, verifikasi via `GET /api/activities?limit=3`.
    Atau import `postman-collection.json` ke Postman untuk klik-klik manual.
 
