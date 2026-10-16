@@ -1,1 +1,12 @@
+# Sumber kunci API (header X-project) proyek ini.
+#
+# AI: baca berkas `.ACTIVITY_PROJECT_KEYS` di folder skill ini untuk
+# mendapatkan kunci. Berkas itu TIDAK di-commit; contoh formatnya ada di sini.
+#
+# Cara isi di app baru:
+#   1. Salin: cp .ACTIVITY_PROJECT_KEYS.example .ACTIVITY_PROJECT_KEYS
+#   2. Ganti kunci + nama proyek di bawah dengan milik app tersebut.
+#   3. AI membaca berkas itu saat mengirim kegiatan — jangan tanya ke user lagi.
+#
+# Format: ACTIVITY_PROJECT_KEYS=<kunci pk_xxx>:<Nama Tampil Proyek>
 ACTIVITY_PROJECT_KEYS=pk_80e642a892d964362e180107bc8fb417:Proyek Publik Bersama
