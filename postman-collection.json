@@ -1,0 +1,92 @@
+{
+  "info": {
+    "name": "Activity Sync — robyajo-portfolio",
+    "description": "CRUD kegiatan antar-proyek. Set variable `projectKey` dengan kunci X-project proyek Anda.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://ajoroby.is-a.dev", "type": "string" },
+    { "key": "projectKey", "value": "pk_LETAK_KUNCI_ANDA_DISINI", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Projects — list (semua publik)",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/projects"
+      }
+    },
+    {
+      "name": "Projects — list milik kunci ini",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/projects?key={{projectKey}}"
+      }
+    },
+    {
+      "name": "Projects — detail by slug",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/projects/nama-proyek?key={{projectKey}}",
+        "description": "Ganti nama-proyek dengan slug. Tanpa ?key hanya meta (tanpa items) untuk proyek sync."
+      }
+    },
+    {
+      "name": "Activities — list publik",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/activities?limit=5"
+      }
+    },
+    {
+      "name": "Activities — list by slug proyek",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/activities?slug=nama-proyek&limit=5"
+      }
+    },
+    {
+      "name": "Activities — kirim / revisi (POST)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-project", "value": "{{projectKey}}" }
+        ],
+        "url": "{{baseUrl}}/api/activities",
+        "description": "source stabil = update baris yang sama. 201 baru, 200 revisi. 401 tanpa header, 403 kunci salah, 422 payload salah.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"kind\": \"feature\",\n  \"project\": { \"name\": \"Nama Proyek\" },\n  \"source\": \"releases/2026-10-16-fitur-x.json\",\n  \"title\": { \"id\": \"Judul Bahasa Indonesia\", \"en\": \"Title in English\" },\n  \"body\": { \"id\": \"Dampak bagi pengguna.\", \"en\": \"User impact.\" }\n}",
+          "options": { "raw": { "language": "json" } }
+        }
+      }
+    },
+    {
+      "name": "Activities — ubah parsial (PATCH)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-project", "value": "{{projectKey}}" }
+        ],
+        "url": "{{baseUrl}}/api/activities/123",
+        "description": "Ganti 123 dengan id. Field parsial. Hanya milik kunci ini.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"kind\": \"fix\",\n  \"title\": { \"id\": \"Judul revisi\", \"en\": \"Revised title\" }\n}",
+          "options": { "raw": { "language": "json" } }
+        }
+      }
+    },
+    {
+      "name": "Activities — hapus (DELETE)",
+      "request": {
+        "method": "DELETE",
+        "header": [{ "key": "X-project", "value": "{{projectKey}}" }],
+        "url": "{{baseUrl}}/api/activities/123",
+        "description": "Ganti 123 dengan id. Hanya milik kunci ini."
+      }
+    }
+  ]
+}
