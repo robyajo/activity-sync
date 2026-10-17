@@ -62,8 +62,9 @@ API otomatis menyesuaikan bentuk berkas rilis:
 - `type` → jenis (`feature`/`fix`/`update`/`deploy`; alias `new`/`important` →
   `feature`, `improvement` → `update`, `bug`/`hotfix` → `fix`).
 - `date` (`YYYY-MM-DD`) → waktu kegiatan.
-- `items[]` (`{type, id, en}`) → daftar butir di isi (diberi tanda strip),
-  tampil sebagai rincian pada halaman detail.
+- `items[]` (`{type, id, en}`) → daftar butir di isi (diberi tanda strip dengan
+  awalan `[jenis]`, mis. `- [new] Teks butir`), tampil sebagai rincian dengan
+  label warna per jenis pada halaman detail.
 - `source` otomatis dari `date` + slug judul (`2026-05-13-verifikasi-…`) — jadi
   kirim ulang berkas yang DIREVISI = **UPDATE** (`200, "updated": true`),
   kegiatan baru = **CREATE** (`201, "updated": false`).

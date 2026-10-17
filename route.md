@@ -34,7 +34,7 @@ sebuah berkasnya di `releases/`, tambah tambah `project`):
 | `type`                  | tidak                     | `feature` · `fix` · `update` · `deploy`; alias: `new`/`important` → fitur, `improvement` → pembaruan, `bug`/`hotfix` → perbaikan |
 | `title.id` / `title.en` | ya                        | masing-masing 1–300 karakter                                                  |
 | `body.id` / `body.en`   | tidak                     | setiap maksimum 2000 karakter, boleh `""`                                      |
-| `items[]`               | tidak                     | daftar `{type, id, en}` → butir berstrip mengikuti isi                        |
+| `items[]`               | tidak                     | daftar `{type, id, en}` → butir berstrip mengikuti isi, jenisnya dipertahankan sebagai tag `[jenis]` dan tampil sebagai label warna |
 
 `source` tidak perlu: otomatis dari `date` + slug judul
 (`2026-05-13-verifikasi-keaslian-e-surat`) sehingga revisi berkas = update
