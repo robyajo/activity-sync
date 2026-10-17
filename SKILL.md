@@ -112,6 +112,13 @@ proyek di browser bila memungkinkan.
 
 Ikuti `backfill.md` dalam paket ini (OS-agnostik: Linux/Windows/Mac).
 
+## 8. Menulis berkas rilis baru (sebelum masuk langkah 3)
+
+Gunakan skill `release-notes` (`release-notes/SKILL.md` dalam paket ini):
+1 berkas JSON per hari di `releases/` (`YYYY-MM-DD-*.json`, konsolidasi),
+dwibahasa, bahasa pelayanan publik. Bentuknya persis yang diterima API —
+setelah berkas jadi, lanjutkan ke langkah 3 dan kirim apa adanya.
+
 ## Aturan bahasa (wajib, security-safe & citizen-facing)
 
 - `id` dan `en` wajib, bukan terjemahan mesin mentah.

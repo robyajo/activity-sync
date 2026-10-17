@@ -8,11 +8,15 @@ yang sudah ada). Ganti `<NAMA_PROYEK>` dengan nama tampil proyek itu.
 
 Setiap selesai mengerjakan perubahan yang **dirasakan pengguna** (fitur baru,
 perbaikan bug, perubahan perilaku, rilis, deploy, hapus fitur), AI WAJIB
-mengirim satu entri kegiatan ke portfolio sebelum menyelesaikan tugas.
-Refactor internal, format, komentar, dan tes yang tak terlihat pengguna:
-jangan kirim.
+mencatat di berkas rilis lalu mengirim satu entri kegiatan ke portfolio
+sebelum menyelesaikan tugas. Refactor internal, format, komentar, dan tes yang
+tak terlihat pengguna: jangan kirim.
 
-1. Muat skill `activity-sync` (`.agents/skills/activity-sync/SKILL.md`) dan
+1. Tulis/perbarui berkas rilis `releases/YYYY-MM-DD-*.json` memakai skill
+   `release-notes` (folder `release-notes/` dalam paket activity-sync):
+   konsolidasi 1 berkas JSON per hari, dwibahasa (id + en), bahasa pelayanan
+   publik — bebas istilah teknis/library/framework.
+2. Muat skill `activity-sync` (`.agents/skills/activity-sync/SKILL.md`) dan
    ikuti alur CRUD di sana: cek proyek (`GET /api/projects?key=`), kirim
    isi berkas rilis `releases/*.json` apa adanya lewat `POST` (tambah
    `"project": {"name": "…"}`; API yang memetakan `type`/`date`/`items`
