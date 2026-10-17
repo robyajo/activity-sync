@@ -46,7 +46,7 @@
       }
     },
     {
-      "name": "Activities — kirim / revisi (POST)",
+      "name": "Activities — kirim berkas rilis (POST)",
       "request": {
         "method": "POST",
         "header": [
@@ -54,10 +54,10 @@
           { "key": "X-project", "value": "{{projectKey}}" }
         ],
         "url": "{{baseUrl}}/api/activities",
-        "description": "source stabil = update baris yang sama. 201 baru, 200 revisi. 401 tanpa header, 403 kunci salah, 422 payload salah.",
+        "description": "Kirim isi releases/*.json PERSIS SEBAGAIMANA ADANYA (+ project). API memetakan type/date/items otomatis; source otomatis dari date + slug judul. Revisi berkas yang sama = update. 201 baru, 200 revisi. 401 tanpa header, 403 kunci salah, 422 payload salah.",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"kind\": \"feature\",\n  \"project\": { \"name\": \"Nama Proyek\" },\n  \"source\": \"releases/2026-10-16-fitur-x.json\",\n  \"title\": { \"id\": \"Judul Bahasa Indonesia\", \"en\": \"Title in English\" },\n  \"body\": { \"id\": \"Dampak bagi pengguna.\", \"en\": \"User impact.\" }\n}",
+          "raw": "{\n  \"date\": \"2026-05-13\",\n  \"type\": \"feature\",\n  \"project\": { \"name\": \"Nama Proyek\" },\n  \"title\": {\n    \"id\": \"Judul Rilis Bahasa Indonesia\",\n    \"en\": \"Release Title in English\"\n  },\n  \"body\": {\n    \"id\": \"Ringkasan dampak bagi pengguna.\",\n    \"en\": \"Summary of the user impact.\"\n  },\n  \"items\": [\n    { \"type\": \"new\", \"id\": \"Butir baru yang diid.\", \"en\": \"New bullet in English.\" },\n    { \"type\": \"improvement\", \"id\": \"Peninggian yang diid.\", \"en\": \"Improvement bullet in English.\" }\n  ]\n}",
           "options": { "raw": { "language": "json" } }
         }
       }

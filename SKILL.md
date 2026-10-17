@@ -45,27 +45,31 @@ yang berubah = perlu diupdate, yang dihapus di proyek = perlu dihapus di sini.
 
 ## 3. Kirim / revisi rilis (CREATE + UPDATE)
 
-Satu endpoint POST untuk keduanya. Wajib sertakan `source` stabil (nama berkas
-rilis, mis. `releases/2026-10-16-fitur-x.json`):
+Satu endpoint POST untuk keduanya. **Cara termudah: kirim isi berkas rilis
+`releases/*.json` PERSIS SEBAGAIMANA ADANYA** (bentuk `{date, type, title,
+body, items}`), tambahkan `"project": {"name": "<NAMA_PROYEK>"}`:
 
 ```bash
 curl -X POST "https://ajoroby.is-a.dev/api/activities" \
   -H "Content-Type: application/json" \
   -H "X-project: <KEY>" \
-  -d '{
-    "kind": "feature",
-    "project": { "name": "Nama Proyek" },
-    "source": "releases/2026-10-16-fitur-x.json",
-    "title": { "id": "...", "en": "..." },
-    "body": { "id": "...", "en": "..." }
-  }'
+  -d "$(cat releases/2026-05-13-verifikasi-keaslian-e-surat.json)" \
+  # ... dan sepasang "project": {"name": "..."} bila diperlukan
 ```
 
-- `kind`: `deploy` · `feature` · `fix` · `update`.
+API otomatis menyesuaikan bentuk berkas rilis:
+
+- `type` → jenis (`feature`/`fix`/`update`/`deploy`; alias `new`/`important` →
+  `feature`, `improvement` → `update`, `bug`/`hotfix` → `fix`).
+- `date` (`YYYY-MM-DD`) → waktu kegiatan.
+- `items[]` (`{type, id, en}`) → daftar butir di isi (diberi tanda strip),
+  tampil sebagai rincian pada halaman detail.
+- `source` otomatis dari `date` + slug judul (`2026-05-13-verifikasi-…`) — jadi
+  kirim ulang berkas yang DIREVISI = **UPDATE** (`200, "updated": true`),
+  kegiatan baru = **CREATE** (`201, "updated": false`).
+- Bentuk kanonik (`kind`, `source`, `title`, `body`, `occurred_at`) juga tetap
+  diterima.
 - Proyek baru otomatis terdaftar saat pertama mengirim.
-- `source` yang sama = **UPDATE** (`200, "updated": true`), baru = **CREATE**
-  (`201, "updated": false`). Jadi setiap revisi berkas rilis → kirim ulang
-  dengan `source` sama, konten portfolio ikut mutakhir.
 - Tanpa header → `401`. Kunci salah → `403`. Payload salah → `422` + rincian.
 
 ## 4. Ubah eksplisit per id (UPDATE)

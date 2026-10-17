@@ -22,7 +22,25 @@ dengan offset (contoh `2026-10-16T10:00:00+07:00`).
 Kunci valid bila tercatat di database (dibuat via admin) ATAU ada di registry
 env — jadi menambah proyek tidak butuh ubah env maupun rebuild portfolio.
 
-**Body (JSON)**
+**Body (JSON) — dua bentuk diterima**
+
+Bentuk 1 — **berkas rilis asli** (`releases/*.json`, persis seperti memikirkan
+sebuah berkasnya di `releases/`, tambah tambah `project`):
+
+| Field                   | Wajib                     | Batas / nilai                                                                 |
+| ----------------------- | ------------------------- | ----------------------------------------------------------------------------- |
+| `project.name`          | saat kontak pertama       | maks 256 karakter                                          |
+| `date`                  | tidak                     | `YYYY-MM-DD` → waktu kegiatan                                                 |
+| `type`                  | tidak                     | `feature` · `fix` · `update` · `deploy`; alias: `new`/`important` → fitur, `improvement` → pembaruan, `bug`/`hotfix` → perbaikan |
+| `title.id` / `title.en` | ya                        | masing-masing 1–300 karakter                                                  |
+| `body.id` / `body.en`   | tidak                     | setiap maksimum 2000 karakter, boleh `""`                                      |
+| `items[]`               | tidak                     | daftar `{type, id, en}` → butir berstrip mengikuti isi                        |
+
+`source` tidak perlu: otomatis dari `date` + slug judul
+(`2026-05-13-verifikasi-keaslian-e-surat`) sehingga revisi berkas = update
+baris yang sama.
+
+Bentuk 2 — kanonik (rujukan internal AI):
 
 | Field                   | Wajib                     | Batas / nilai                                              |
 | ----------------------- | ------------------------- | ---------------------------------------------------------- |

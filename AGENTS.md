@@ -13,9 +13,11 @@ Refactor internal, format, komentar, dan tes yang tak terlihat pengguna:
 jangan kirim.
 
 1. Muat skill `activity-sync` (`.agents/skills/activity-sync/SKILL.md`) dan
-   ikuti alur CRUD di sana: cek proyek (`GET /api/projects?key=`), kirim/
-   revisi (`POST` dengan `source` = nama berkas rilis), ubah (`PATCH`),
-   hapus (`DELETE`), lalu verifikasi (`GET` + cek tidak dobel).
+   ikuti alur CRUD di sana: cek proyek (`GET /api/projects?key=`), kirim
+   isi berkas rilis `releases/*.json` apa adanya lewat `POST` (tambah
+   `"project": {"name": "…"}`; API yang memetakan `type`/`date`/`items`
+   otomatis), ubah (`PATCH`), hapus (`DELETE`), lalu verifikasi (`GET` +
+   cek tidak dobel).
 2. Kunci `X-project` proyek ini: baca dari berkas `.ACTIVITY_PROJECT_KEYS`
    di folder skill ini (contoh format lihat `.ACTIVITY_PROJECT_KEYS.example`;
    salin jadi `.ACTIVITY_PROJECT_KEYS` lalu isi kunci app ini) — JANGAN commit
@@ -34,5 +36,6 @@ Aturan tambahan untuk AI (`AGENTS.md` ini):
   format: `.ACTIVITY_PROJECT_KEYS.example`; kunci bersama portfolio ada di
   baris contoh itu). Bila respons API `401` (tanpa header) atau `403`
   (kunci salah), berhenti dan minta kunci baru ke pemilik — jangan menebak.
-- `source` HARUS stabil per rilis (nama berkasnya) agar revisi menimpa baris
+- `source` otomatis dari `date` + slug judul berkas rilis; bila mengirim
+  bentuk kanonik, `source` HARUS stabil per rilis agar revisi menimpa baris
   yang sama.
