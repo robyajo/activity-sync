@@ -22,15 +22,17 @@ tak terlihat pengguna: jangan kirim.
    `"project": {"name": "…"}`; API yang memetakan `type`/`date`/`items`
    otomatis), ubah (`PATCH`), hapus (`DELETE`), lalu verifikasi (`GET` +
    cek tidak dobel).
-2. Kunci `X-project` proyek ini: baca dari berkas `.ACTIVITY_PROJECT_KEYS`
+3. Kunci `X-project` proyek ini: baca dari berkas `.ACTIVITY_PROJECT_KEYS`
    di folder skill ini (contoh format lihat `.ACTIVITY_PROJECT_KEYS.example`;
    salin jadi `.ACTIVITY_PROJECT_KEYS` lalu isi kunci app ini) — JANGAN commit
    berkas kunci ke git, JANGAN tampilkan ke user kecuali diminta.
-3. Setiap kiriman wajib dwibahasa (`id` + `en`), maksimal 300 karakter judul /
-   2000 karakter isi, bahasa pelayanan publik (dilarang menyebut library,
-   framework, database, file kode, atau mekanisme internal).
-4. Untuk rilis lama yang belum terkirim: ikuti `backfill.md` (sekali saja).
-5. Laporkan ke user: apa yang dikirim (id baris), hasil verifikasi, dan apa
+4. Setiap kiriman wajib dwibahasa (`id` + `en`), maksimal 300 karakter judul /
+   2000 karakter isi gabungan `body` + seluruh `items[]` per bahasa, dengan bahasa
+   pelayanan publik (dilarang menyebut library, framework, database, file kode,
+   atau mekanisme internal). Semua rincian harus dikirim; API menolak total yang
+   melebihi batas, bukan memotong isinya diam-diam.
+5. Untuk rilis lama yang belum terkirim: ikuti `backfill.md` (sekali saja).
+6. Laporkan ke user: apa yang dikirim (id baris), hasil verifikasi, dan apa
    pun yang gagal.
 ```
 
