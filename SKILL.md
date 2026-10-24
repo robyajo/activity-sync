@@ -64,7 +64,7 @@ API otomatis menyesuaikan bentuk berkas rilis:
 - `date` (`YYYY-MM-DD`) → waktu kegiatan.
 - `items[]` (`{type, id, en}`) → seluruh butir digabung ke isi (diberi tanda
   strip dengan awalan `[jenis]`, mis. `- [new] Teks butir`), tampil sebagai
-  rincian dengan label warna per jenis pada halaman detail. Batas 2.000 karakter
+  rincian dengan label warna per jenis pada halaman detail. Batas 10.000 karakter
   berlaku pada hasil gabungan `body` + semua butir untuk masing-masing bahasa.
   API tidak memotong isi diam-diam: jika gabungan melebihi batas, seluruh kiriman
   ditolak (`422`), jadi ringkas isi sumber bila perlu.

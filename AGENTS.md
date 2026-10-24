@@ -27,7 +27,7 @@ tak terlihat pengguna: jangan kirim.
    salin jadi `.ACTIVITY_PROJECT_KEYS` lalu isi kunci app ini) — JANGAN commit
    berkas kunci ke git, JANGAN tampilkan ke user kecuali diminta.
 4. Setiap kiriman wajib dwibahasa (`id` + `en`), maksimal 300 karakter judul /
-   2000 karakter isi gabungan `body` + seluruh `items[]` per bahasa, dengan bahasa
+   10.000 karakter isi gabungan `body` + seluruh `items[]` per bahasa, dengan bahasa
    pelayanan publik (dilarang menyebut library, framework, database, file kode,
    atau mekanisme internal). Semua rincian harus dikirim; API menolak total yang
    melebihi batas, bukan memotong isinya diam-diam.

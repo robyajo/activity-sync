@@ -33,28 +33,28 @@ sebuah berkasnya di `releases/`, tambah tambah `project`):
 | `date`                  | tidak               | `YYYY-MM-DD` → waktu kegiatan                                                                                                    |
 | `type`                  | tidak               | `feature` · `fix` · `update` · `deploy`; alias: `new`/`important` → fitur, `improvement` → pembaruan, `bug`/`hotfix` → perbaikan |
 | `title.id` / `title.en` | ya                  | masing-masing 1–300 karakter                                                                                                     |
-| `body.id` / `body.en`   | tidak               | hasil gabungan `body` + semua butir bahasa terkait maksimum 2000 karakter, boleh `""`                                            |
-| `items[]`               | tidak               | seluruh daftar `{type, id, en}` diterima dan digabung ke isi; total gabungan per bahasa tetap maksimum 2000 karakter             |
+| `body.id` / `body.en`   | tidak               | hasil gabungan `body` + semua butir bahasa terkait maksimum 10.000 karakter, boleh `""`                                          |
+| `items[]`               | tidak               | seluruh daftar `{type, id, en}` diterima dan digabung ke isi; total gabungan per bahasa tetap maksimum 10.000 karakter           |
 
 `source` tidak perlu: otomatis dari `date` + slug judul
 (`2026-05-13-verifikasi-keaslian-e-surat`) sehingga revisi berkas = update
 baris yang sama. Semua butir dipertahankan bila isi gabungan per bahasa muat
-maksimum 2000 karakter. Jika melebihi batas, API menolak seluruh kiriman dengan
+maksimum 10.000 karakter. Jika melebihi batas, API menolak seluruh kiriman dengan
 `422` (tidak memotong sebagian isi).
 
 Bentuk 2 — kanonik (rujukan internal AI):
 
-| Field                   | Wajib                     | Batas / nilai                                                                      |
-| ----------------------- | ------------------------- | ---------------------------------------------------------------------------------- |
-| `kind`                  | tidak                     | `deploy` · `feature` · `fix` · `update` (default `update`)                         |
-| `project.name`          | saat kontak pertama       | maks 256 karakter                                                                  |
-| `project.url`           | tidak                     | maks 2048 karakter, boleh `""`                                                     |
-| `project.description`   | tidak                     | maks 2000 karakter, boleh `""`                                                     |
-| `source`                | tidak (sangat dianjurkan) | id stabil, mis. nama berkas rilis, maks 256 karakter                               |
-| `title.id` / `title.en` | ya                        | masing-masing 1–300 karakter                                                       |
-| `body.id` / `body.en`   | tidak                     | masing-masing maks 2000 karakter setelah digabung dengan seluruh butir, boleh `""` |
-| `url`                   | tidak                     | maks 2048 karakter, boleh `""`                                                     |
-| `occurred_at`           | tidak                     | datetime ISO dengan offset (default: waktu terima)                                 |
+| Field                   | Wajib                     | Batas / nilai                                                                        |
+| ----------------------- | ------------------------- | ------------------------------------------------------------------------------------ |
+| `kind`                  | tidak                     | `deploy` · `feature` · `fix` · `update` (default `update`)                           |
+| `project.name`          | saat kontak pertama       | maks 256 karakter                                                                    |
+| `project.url`           | tidak                     | maks 2048 karakter, boleh `""`                                                       |
+| `project.description`   | tidak                     | maks 2000 karakter, boleh `""`                                                       |
+| `source`                | tidak (sangat dianjurkan) | id stabil, mis. nama berkas rilis, maks 256 karakter                                 |
+| `title.id` / `title.en` | ya                        | masing-masing 1–300 karakter                                                         |
+| `body.id` / `body.en`   | tidak                     | masing-masing maks 10.000 karakter setelah digabung dengan seluruh butir, boleh `""` |
+| `url`                   | tidak                     | maks 2048 karakter, boleh `""`                                                       |
+| `occurred_at`           | tidak                     | datetime ISO dengan offset (default: waktu terima)                                   |
 
 **Semantik**
 
